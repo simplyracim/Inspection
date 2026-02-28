@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Insight Technologies (SIT) - NDT & Asset Integrity Services | Algeria</title>
+    <meta name="description" content="Smart Insight Technologies (SIT) provides advanced Non-Destructive Testing (NDT), drone inspection, and asset integrity services for oil & gas, petrochemical, and industrial sectors in Algeria.">
+    <meta name="keywords" content="NDT, Non-Destructive Testing, PAUT, TOFD, drone inspection, Algeria, oil and gas inspection, asset integrity, industrial inspection">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Rajdhani', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sit': {
+                            primary: '#0F172A',      // Deep navy
+                            secondary: '#1E293B',   // Slate
+                            accent: '#F59E0B',       // Safety orange
+                            accentHover: '#D97706',
+                            highlight: '#3B82F6',    // Tech blue
+                            light: '#F8FAFC',
+                            dark: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'industrial-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23ffffff\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --cursor-size: 20px;
+        }
+        
+        * {
+            cursor: none;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        
+        .font-display {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #F59E0B;
+        }
+        
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(245, 158, 11, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(245, 158, 11, 0.1);
+            border-color: #F59E0B;
+        }
+        
+        /* Noise Texture */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Hero Canvas */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Text Effects */
+        .text-gradient {
+            background: linear-gradient(135deg, #F59E0B 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-outline {
+            -webkit-text-stroke: 2px rgba(245, 158, 11, 0.3);
+            color: transparent;
+        }
+        
+        /* Magnetic Button */
+        .magnetic-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Service Cards */
+        .service-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 30px 60px -15px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Scan Line Animation */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #F59E0B, transparent);
+            animation: scan 3s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        /* Pulse Animation */
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid #F59E0B;
+            border-radius: 50%;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Hexagon Grid */
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #F59E0B;
+            border-radius: 4px;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #F59E0B;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* Language Switcher */
+        .lang-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn.active {
+            background: #F59E0B;
+            color: #0F172A;
+        }
+        
+        /* Form Styles */
+        .form-input {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #F59E0B;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+        
+        /* Industrial Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Stats Counter */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Equipment Card */
+        .equipment-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(245, 158, 11, 0.1);
+        }
+        
+        /* Timeline */
+        .timeline-line {
+            background: linear-gradient(to bottom, #F59E0B, #3B82F6);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0F172A;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(245, 158, 11, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+            background: #F59E0B;
+            animation: load 2s ease-in-out forwards;
+        }
+        
+        @keyframes load {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sit-accent selection:text-sit-primary">
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="text-center">
+            <div class="font-display text-4xl font-bold mb-4 tracking-wider">
+                <span class="text-white">SIT</span>
+                <span class="text-sit-accent">.</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="mt-4 text-sm text-gray-400 font-mono">Initializing Systems...</div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+    
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+    
+    <!-- Scan Line -->
+    <div class="scan-line hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                        <div class="w-10 h-10 bg-sit-accent rounded-lg flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform">
+                            <span class="font-display font-bold text-sit-primary text-xl">SIT</span>
+                        </div>
+                        <div class="hidden sm:block">
+                            <div class="font-display font-bold text-xl leading-none">SMART INSIGHT</div>
+                            <div class="text-xs text-sit-accent tracking-widest">TECHNOLOGIES</div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="#home" class="nav-link text-sm font-medium hover:text-sit-accent transition-colors" data-i18n="nav.home">Home</a>
+                        <a href="#about" class="nav-link text-sm font-medium hover:text-sit-accent transition-colors" data-i18n="nav.about">About</a>
+                        <div class="relative group">
+                            <button class="nav-link text-sm font-medium hover:text-sit-accent transition-colors flex items-center gap-1">
+                                <span data-i18n="nav.services">Services</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </button>
+                            <div class="absolute top-full left-0 mt-2 w-64 glass rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top">
+                                <div class="py-2">
+                                    <a href="#services" class="block px-4 py-2 text-sm hover:bg-sit-accent/10 hover:text-sit-accent transition-colors" data-i18n="services.conv">Conventional NDT</a>
+                                    <a href="#advanced" class="block px-4 py-2 text-sm hover:bg-sit-accent/10 hover:text-sit-accent transition-colors" data-i18n="services.advanced">Advanced NDT</a>
+                                    <a href="#tube" class="block px-4 py-2 text-sm hover:bg-sit-accent/10 hover:text-sit-accent transition-colors" data-i18n="services.tube">Tube Inspection</a>
+                                    <a href="#drone" class="block px-4 py-2 text-sm hover:bg-sit-accent/10 hover:text-sit-accent transition-colors" data-i18n="services.drone">Drone Inspection</a>
+                                    <a href="#robotics" class="block px-4 py-2 text-sm hover:bg-sit-accent/10 hover:text-sit-accent transition-colors" data-i18n="services.robotics">Robotic Inspection</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#industries" class="nav-link text-sm font-medium hover:text-sit-accent transition-colors" data-i18n="nav.industries">Industries</a>
+                        <a href="#projects" class="nav-link text-sm font-medium hover:text-sit-accent transition-colors" data-i18n="nav.projects">Projects</a>
+                        <a href="#contact" class="nav-link text-sm font-medium hover:text-sit-accent transition-colors" data-i18n="nav.contact">Contact</a>
+                    </div>
+
+                    <!-- Right Side -->
+                    <div class="flex items-center gap-4">
+                        <!-- Language Switcher -->
+                        <div class="hidden md:flex items-center gap-1 bg-sit-secondary/50 rounded-lg p-1">
+                            <button onclick="setLanguage('en')" class="lang-btn active px-3 py-1 rounded text-xs font-medium" data-lang="en">EN</button>
+                            <button onclick="setLanguage('fr')" class="lang-btn px-3 py-1 rounded text-xs font-medium hover:text-sit-accent" data-lang="fr">FR</button>
+                            <button onclick="setLanguage('ar')" class="lang-btn px-3 py-1 rounded text-xs font-medium hover:text-sit-accent" data-lang="ar">AR</button>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <a href="#contact" class="magnetic-btn hidden sm:flex bg-sit-accent hover:bg-sit-accentHover text-sit-primary px-6 py-2.5 rounded-lg font-semibold text-sm transition-all hover:shadow-lg hover:shadow-sit-accent/25">
+                            <span data-i18n="nav.quote">Request Quote</span>
+                        </a>
+
+                        <!-- Mobile Menu Button -->
+                        <button class="lg:hidden p-2 hover:bg-white/5 rounded-lg transition-colors" onclick="toggleMobileMenu()">
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-0 z-40 bg-sit-primary pt-20 px-6 lg:hidden">
+        <div class="flex flex-col gap-6 text-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.home">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.about">About</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.services">Services</a>
+            <a href="#industries" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.industries">Industries</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.projects">Projects</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4" data-i18n="nav.contact">Contact</a>
+            
+            <div class="flex gap-2 mt-4">
+                <button onclick="setLanguage('en'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors">English</button>
+                <button onclick="setLanguage('fr'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors">Français</button>
+                <button onclick="setLanguage('ar'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors">العربية</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Hero Section - Full Screen -->
+<section id="home" class="relative h-screen flex flex-col bg-sit-primary">
+    
+    <!-- Top 3/4 - Background Image with Text Overlay -->
+    <div class="relative h-[75%] w-full overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="assets/industrial-background.png" 
+                 alt="Industrial facility" 
+                 class="w-full h-full object-cover object-center">
+        </div>
+        
+        <!-- Dark Gradient Overlay for Text Readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-sit-primary"></div>
+        
+        <!-- Optional: Industrial Grid Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" 
+             style="background-image: 
+                linear-gradient(rgba(245,158,11,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245,158,11,0.2) 1px, transparent 1px);
+                background-size: 60px 60px;">
+        </div>
+
+        <!-- Text Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-sit-accent/30 mb-8 animate-fade-in-up">
+                <span class="w-2 h-2 bg-sit-accent rounded-full animate-pulse"></span>
+                <span class="text-sm font-medium tracking-widest uppercase text-white">Inspection Excellence</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-white drop-shadow-2xl animate-fade-in-up delay-100">
+                <span class="block tracking-tight">Smart Insight</span>
+                <span class="block text-sit-accent mt-2 tracking-tight">Technologies</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-10 font-light leading-relaxed drop-shadow-lg animate-fade-in-up delay-200">
+                Advanced NDT & Asset Integrity Services for Industrial Excellence in Algeria
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-300">
+                <a href="#services" class="group bg-sit-accent hover:bg-sit-accentHover text-sit-primary px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-sit-accent/30 flex items-center gap-2 hover:-translate-y-1">
+                    <span>Explore Services</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#contact" class="group border-2 border-white/40 hover:border-sit-accent hover:text-sit-accent text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-1 backdrop-blur-sm bg-white/5 hover:bg-white/10">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    <span>Contact Us</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-white/70"></i>
+        </div>
+    </div>
+
+    <!-- Bottom 1/4 - Stats Section -->
+    <div class="h-[25%] bg-sit-primary border-t border-white/10 flex items-center relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide">Years Experience</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide">Projects Completed</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide">Certified Experts</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide">Emergency Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="relative py-24 bg-sit-secondary overflow-hidden">
+        <div class="absolute inset-0 industrial-pattern opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                        <i data-lucide="hexagon" class="w-5 h-5"></i>
+                        <span class="tracking-widest uppercase text-sm" data-i18n="about.label">Who We Are</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6 leading-tight" data-i18n="about.title">
+                        Precision Inspection for <span class="text-sit-accent">Critical Assets</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6" data-i18n="about.p1">
+                        Smart Insight Technologies (SIT) is an Algeria-based inspection and asset integrity services company specializing in Non-Destructive Testing (NDT). We help operators reduce risk, prevent unplanned shutdowns, and extend asset life.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8" data-i18n="about.p2">
+                        Our team of certified inspectors utilizes cutting-edge technology to detect corrosion, cracking, manufacturing defects, and in-service degradation without damaging your equipment. We combine technical excellence with safety-first execution.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="about.feature1">Safety First</div>
+                                <div class="text-sm text-gray-400" data-i18n="about.feature1desc">HSE aligned with industrial standards</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="cpu" class="w-5 h-5 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="about.feature2">Advanced Tech</div>
+                                <div class="text-sm text-gray-400" data-i18n="about.feature2desc">PAUT, TOFD, Drones & Robotics</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="file-text" class="w-5 h-5 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="about.feature3">Evidence Based</div>
+                                <div class="text-sm text-gray-400" data-i18n="about.feature3desc">Detailed reporting & traceability</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="about.feature4">Rapid Response</div>
+                                <div class="text-sm text-gray-400" data-i18n="about.feature4desc">24/7 availability for turnarounds</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 text-sit-accent font-semibold hover:gap-4 transition-all">
+                        <span data-i18n="about.cta">Learn More About Us</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <div class="reveal relative">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop" alt="Industrial Inspection" class="w-full h-[500px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sit-primary/80 to-transparent"></div>
+                        
+                        <!-- Floating Card -->
+                        <div class="absolute bottom-6 left-6 right-6 glass-card rounded-xl p-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-sit-accent flex items-center justify-center">
+                                    <i data-lucide="award" class="w-6 h-6 text-sit-primary"></i>
+                                </div>
+                                <div>
+                                    <div class="font-display font-bold text-xl">ISO 9712</div>
+                                    <div class="text-sm text-gray-400" data-i18n="about.certified">Certified Personnel</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 border-2 border-sit-accent/30 rounded-lg"></div>
+                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-sit-accent/10 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-24 bg-sit-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                    <span class="tracking-widest uppercase text-sm" data-i18n="services.label">Our Expertise</span>
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6" data-i18n="services.title">
+                    Comprehensive NDT <span class="text-gradient">Solutions</span>
+                </h2>
+                <p class="text-gray-400 text-lg" data-i18n="services.subtitle">
+                    From conventional methods to advanced robotics, we deliver precision inspection services tailored to your assets.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Conventional NDT -->
+                <div class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('conventional')">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="scan-eye" class="w-7 h-7 text-blue-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.conv.title">Conventional NDT</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.conv.desc">
+                        VT, UT, PT, MT, RT, ET, LT, IR Thermography, PMI, and Hardness Testing for comprehensive field and workshop inspections.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">VT</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">UT</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">PT</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">MT</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">RT</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Advanced NDT -->
+                <div id="advanced" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('advanced')">
+                    <div class="w-14 h-14 rounded-xl bg-sit-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="scan-line" class="w-7 h-7 text-sit-accent"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.advanced.title">Advanced NDT</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.advanced.desc">
+                        PAUT, TOFD, Guided Wave UT, ACFM, PEC/PECT, ECA, and automated scanners for complex inspection challenges.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">PAUT</span>
+                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">TOFD</span>
+                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">LRUT</span>
+                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">ACFM</span>
+                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">PEC</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Tube Inspection -->
+                <div id="tube" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('tube')">
+                    <div class="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="thermometer" class="w-7 h-7 text-green-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.tube.title">Tube Inspection</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.tube.desc">
+                        ECT, RFT, NFT, MFL, and IRIS inspection for heat exchangers and air coolers with detailed tube sheet mapping.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">ECT</span>
+                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">RFT</span>
+                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">IRIS</span>
+                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">NFT</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Drone Inspection -->
+                <div id="drone" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('drone')">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="plane" class="w-7 h-7 text-purple-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.drone.title">Drone Inspection</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.drone.desc">
+                        Aerial surveys for stacks, flares, tanks, and structures with optional IR thermography and photogrammetry.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">Aerial</span>
+                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">Thermal</span>
+                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">3D Model</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Robotic Inspection -->
+                <div id="robotics" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('robotics')">
+                    <div class="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bot" class="w-7 h-7 text-red-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.robotics.title">Robotic Inspection</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.robotics.desc">
+                        Confined space and difficult-access solutions for tanks, vessels, and ducts with visual and NDT payloads.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">Crawler</span>
+                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">UT Payload</span>
+                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">Confined</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Shutdown Support -->
+                <div class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('shutdown')">
+                    <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="timer" class="w-7 h-7 text-orange-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.shutdown.title">Turnaround Support</h3>
+                    <p class="text-gray-400 mb-6" data-i18n="services.shutdown.desc">
+                        Rapid mobilization for shutdown inspections, expedited reporting, re-inspections, and punch-list closeout support.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">Rapid</span>
+                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">24/7</span>
+                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">TAR</span>
+                    </div>
+                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
+                        <span data-i18n="services.learnmore">Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="relative py-24 bg-sit-secondary overflow-hidden">
+        <div class="absolute inset-0 industrial-pattern opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                    <i data-lucide="factory" class="w-5 h-5"></i>
+                    <span class="tracking-widest uppercase text-sm" data-i18n="industries.label">Industries Served</span>
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6" data-i18n="industries.title">
+                    Trusted Across <span class="text-gradient">Critical Sectors</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Oil & Gas -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Oil and Gas" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sit-primary via-sit-primary/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="w-12 h-12 rounded-lg bg-sit-accent flex items-center justify-center mb-3">
+                            <i data-lucide="fuel" class="w-6 h-6 text-sit-primary"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-1" data-i18n="industries.oil">Oil & Gas</h3>
+                        <p class="text-sm text-gray-300" data-i18n="industries.oildesc">Upstream, midstream, downstream refining</p>
+                    </div>
+                </div>
+
+                <!-- Petrochemical -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1565514020176-dbf2277e4957?w=600&h=400&fit=crop" alt="Petrochemical" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sit-primary via-sit-primary/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="w-12 h-12 rounded-lg bg-sit-accent flex items-center justify-center mb-3">
+                            <i data-lucide="flask-conical" class="w-6 h-6 text-sit-primary"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-1" data-i18n="industries.petro">Petrochemical</h3>
+                        <p class="text-sm text-gray-300" data-i18n="industries.petrodesc">Process plants & chemical facilities</p>
+                    </div>
+                </div>
+
+                <!-- Power -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Power" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sit-primary via-sit-primary/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="w-12 h-12 rounded-lg bg-sit-accent flex items-center justify-center mb-3">
+                            <i data-lucide="zap" class="w-6 h-6 text-sit-primary"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-1" data-i18n="industries.power">Power & Utilities</h3>
+                        <p class="text-sm text-gray-300" data-i18n="industries.powerdesc">Generation & distribution assets</p>
+                    </div>
+                </div>
+
+                <!-- Industrial -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop" alt="Industrial" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sit-primary via-sit-primary/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="w-12 h-12 rounded-lg bg-sit-accent flex items-center justify-center mb-3">
+                            <i data-lucide="hammer" class="w-6 h-6 text-sit-primary"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-1" data-i18n="industries.industrial">Industrial</h3>
+                        <p class="text-sm text-gray-300" data-i18n="industries.industrialdesc">Cement, steel, manufacturing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assets List -->
+            <div class="mt-16 glass rounded-2xl p-8 reveal">
+                <h3 class="font-display text-2xl font-bold mb-8 text-center" data-i18n="industries.assets">Typical Assets We Inspect</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="cylinder" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.vessels">Pressure Vessels</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="pipeline" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.piping">Piping Systems</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="database" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.tanks">Storage Tanks</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="flame" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.heaters">Heaters & Boilers</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="air-vent" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.exchangers">Heat Exchangers</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="tower-control" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.columns">Columns</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="construction" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.structures">Structures</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
+                        <i data-lucide="flame-kindling" class="w-5 h-5 text-sit-accent"></i>
+                        <span class="text-sm" data-i18n="assets.flares">Flare Systems</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects/Case Studies Section -->
+    <section id="projects" class="relative py-24 bg-sit-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        <span class="tracking-widest uppercase text-sm" data-i18n="projects.label">Case Studies</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold" data-i18n="projects.title">
+                        Proven <span class="text-gradient">Results</span>
+                    </h2>
+                </div>
+                <a href="#contact" class="mt-6 md:mt-0 magnetic-btn border-2 border-sit-accent text-sit-accent hover:bg-sit-accent hover:text-sit-primary px-6 py-3 rounded-lg font-semibold transition-all">
+                    <span data-i18n="projects.viewall">View All Projects</span>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop" alt="Refinery Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">PAUT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p1.title">Refinery Turnaround</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p1.desc">
+                            Complete weld inspection of 450+ joints using PAUT/TOFD during 14-day shutdown, zero delays.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2024</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Pipeline Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">LRUT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p2.title">Pipeline Screening</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p2.desc">
+                            12km non-piggable pipeline screened using Guided Wave UT, identified 23 critical locations for excavation.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2024</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Tank Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">MFL</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p3.title">Tank Floor Scan</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p3.desc">
+                            MFL scanning of 6 crude oil storage tanks (40m diameter), detected floor corrosion without cleaning.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2023</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565514020176-dbf2277e4957?w=600&h=400&fit=crop" alt="Heat Exchanger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ECT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p4.title">Heat Exchanger Bundle</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p4.desc">
+                            Tube inspection of 4 large heat exchangers using ECT and IRIS, prioritized 15% tubes for plugging.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2023</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Drone Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">DRONE</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p5.title">Flare Stack Survey</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p5.desc">
+                            Drone inspection of 85m flare stack and structure, eliminated scaffolding requirements, 70% cost savings.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2023</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="Robotic Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ROBOT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p6.title">Confined Space Entry</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p6.desc">
+                            Robotic inspection of 4 storage tanks without human entry, UT thickness measurements and visual documentation.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span class="text-sm text-gray-500">2024</span>
+                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
+                                <span data-i18n="projects.readmore">Read More</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment & Certifications -->
+    <section class="relative py-24 bg-sit-secondary overflow-hidden">
+        <div class="absolute inset-0 industrial-pattern opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Equipment -->
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                        <i data-lucide="wrench" class="w-5 h-5"></i>
+                        <span class="tracking-widest uppercase text-sm" data-i18n="equipment.label">Our Equipment</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-8" data-i18n="equipment.title">
+                        State-of-the-Art <span class="text-sit-accent">Technology</span>
+                    </h2>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="scan" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">PAUT Systems</h4>
+                            <p class="text-xs text-gray-400">Phased Array Ultrasonic Testing</p>
+                        </div>
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="waves" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">TOFD Equipment</h4>
+                            <p class="text-xs text-gray-400">Time of Flight Diffraction</p>
+                        </div>
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="radio" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">LRUT</h4>
+                            <p class="text-xs text-gray-400">Guided Wave Testing</p>
+                        </div>
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="magnet" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">ACFM</h4>
+                            <p class="text-xs text-gray-400">Alternating Current Field</p>
+                        </div>
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="zap" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">PEC</h4>
+                            <p class="text-xs text-gray-400">Pulsed Eddy Current</p>
+                        </div>
+                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
+                            <i data-lucide="plane" class="w-8 h-8 text-sit-accent mb-3"></i>
+                            <h4 class="font-semibold mb-1">Drone Fleet</h4>
+                            <p class="text-xs text-gray-400">Industrial UAVs with payloads</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                        <span class="tracking-widest uppercase text-sm" data-i18n="cert.label">Certifications</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-8" data-i18n="cert.title">
+                        Quality & <span class="text-sit-accent">Compliance</span>
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div class="glass rounded-xl p-6 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="shield" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">ISO 9712</h4>
+                                <p class="text-sm text-gray-400" data-i18n="cert.iso9712">Personnel certification in NDT methods. Level II and III certified inspectors.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-xl p-6 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">ASNT</h4>
+                                <p class="text-sm text-gray-400" data-i18n="cert.asnt">American Society for Nondestructive Testing compliance and procedures.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-xl p-6 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="file-badge" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">ISO 9001:2015</h4>
+                                <p class="text-sm text-gray-400" data-i18n="cert.iso9001">Quality Management System certification for consistent service delivery.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-xl p-6 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="heart-pulse" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">ISO 45001:2018</h4>
+                                <p class="text-sm text-gray-400" data-i18n="cert.iso45001">Occupational Health and Safety Management System certification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-24 bg-sit-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        <span class="tracking-widest uppercase text-sm" data-i18n="contact.label">Get In Touch</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6" data-i18n="contact.title">
+                        Request a <span class="text-gradient">Quote</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8" data-i18n="contact.subtitle">
+                        Ready to discuss your inspection needs? Contact us for a detailed proposal tailored to your assets and schedule.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="contact.address.label">Address</div>
+                                <div class="text-gray-400">Algiers, Algeria</div>
+                                <div class="text-sm text-gray-500" data-i18n="contact.address.detail">Serving all industrial zones nationwide</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1" data-i18n="contact.phone.label">Phone</div>
+                                <div class="text-gray-400">+213 XXX XXX XXX</div>
+                                <div class="text-sm text-gray-500" data-i18n="contact.phone.detail">24/7 Emergency Support</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1">Email</div>
+                                <div class="text-gray-400">contact@sit-dz.com</div>
+                                <div class="text-sm text-gray-500" data-i18n="contact.email.detail">Response within 24 hours</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="message-square" class="w-6 h-6 text-sit-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold mb-1">WhatsApp</div>
+                                <div class="text-gray-400">+213 XXX XXX XXX</div>
+                                <div class="text-sm text-gray-500" data-i18n="contact.whatsapp.detail">Quick inquiries</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-sit-accent hover:text-sit-primary transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-sit-accent hover:text-sit-primary transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-sit-accent hover:text-sit-primary transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="reveal">
+                    <form class="glass-card rounded-2xl p-8" onsubmit="handleSubmit(event)">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="form.name">Full Name *</label>
+                                <input type="text" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="form.company">Company *</label>
+                                <input type="text" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none" placeholder="Company Name">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="form.email">Email *</label>
+                                <input type="email" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none" placeholder="john@company.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="form.phone">Phone</label>
+                                <input type="tel" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none" placeholder="+213 XXX XXX XXX">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2" data-i18n="form.service">Service Required *</label>
+                            <select required class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none">
+                                <option value="" data-i18n="form.select">Select a service...</option>
+                                <option value="conventional" data-i18n="services.conv.title">Conventional NDT</option>
+                                <option value="advanced" data-i18n="services.advanced.title">Advanced NDT</option>
+                                <option value="tube" data-i18n="services.tube.title">Tube Inspection</option>
+                                <option value="drone" data-i18n="services.drone.title">Drone Inspection</option>
+                                <option value="robotics" data-i18n="services.robotics.title">Robotic Inspection</option>
+                                <option value="turnaround" data-i18n="services.shutdown.title">Turnaround Support</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2" data-i18n="form.message">Project Details *</label>
+                            <textarea required rows="4" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none resize-none" placeholder="Describe your inspection requirements..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full magnetic-btn bg-sit-accent hover:bg-sit-accentHover text-sit-primary py-4 rounded-lg font-bold text-lg transition-all hover:shadow-lg hover:shadow-sit-accent/30 flex items-center justify-center gap-2">
+                            <span data-i18n="form.submit">Send Request</span>
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-sit-dark border-t border-white/5 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Company -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-sit-accent rounded-lg flex items-center justify-center">
+                            <span class="font-display font-bold text-sit-primary text-xl">SIT</span>
+                        </div>
+                        <div>
+                            <div class="font-display font-bold text-lg leading-none">SMART INSIGHT</div>
+                            <div class="text-xs text-sit-accent tracking-widest">TECHNOLOGIES</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6" data-i18n="footer.about">
+                        Algeria's leading NDT and asset integrity service provider, delivering precision inspection solutions for critical industrial infrastructure.
+                    </p>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6" data-i18n="footer.services">Services</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#services" class="hover:text-sit-accent transition-colors">Conventional NDT</a></li>
+                        <li><a href="#advanced" class="hover:text-sit-accent transition-colors">Advanced NDT</a></li>
+                        <li><a href="#tube" class="hover:text-sit-accent transition-colors">Tube Inspection</a></li>
+                        <li><a href="#drone" class="hover:text-sit-accent transition-colors">Drone Inspection</a></li>
+                        <li><a href="#robotics" class="hover:text-sit-accent transition-colors">Robotic Inspection</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6" data-i18n="footer.industries">Industries</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#industries" class="hover:text-sit-accent transition-colors">Oil & Gas</a></li>
+                        <li><a href="#industries" class="hover:text-sit-accent transition-colors">Petrochemical</a></li>
+                        <li><a href="#industries" class="hover:text-sit-accent transition-colors">Power Generation</a></li>
+                        <li><a href="#industries" class="hover:text-sit-accent transition-colors">Industrial Plants</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6" data-i18n="footer.contact">Contact</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-sit-accent"></i>
+                            Algiers, Algeria
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-sit-accent"></i>
+                            +213 XXX XXX XXX
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-sit-accent"></i>
+                            contact@sit-dz.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-gray-500">
+                    © 2024 Smart Insight Technologies. <span data-i18n="footer.rights">All rights reserved.</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-sit-accent transition-colors" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="hover:text-sit-accent transition-colors" data-i18n="footer.terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeServiceModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="glass-card max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-8 relative transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+                <button onclick="closeServiceModal()" class="absolute top-4 right-4 w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 z-50 transform translate-y-20 opacity-0 transition-all duration-300">
+        <div class="glass-card px-6 py-4 rounded-xl flex items-center gap-3 border-l-4 border-sit-accent">
+            <i data-lucide="check-circle" class="w-6 h-6 text-sit-accent"></i>
+            <div>
+                <div class="font-semibold" data-i18n="toast.title">Message Sent!</div>
+                <div class="text-sm text-gray-400" data-i18n="toast.message">We'll get back to you within 24 hours.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Cursor hover effect
+        const interactiveElements = document.querySelectorAll('a, button, .service-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((element, index) => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Add to your existing GSAP/animation script
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-count'));
+            gsap.to(stat, {
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                scrollTrigger: {
+                    trigger: stat,
+                    start: "top 90%"
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('open');
+        }
+
+        // Language Switcher
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.services": "Services",
+                "nav.industries": "Industries",
+                "nav.projects": "Projects",
+                "nav.contact": "Contact",
+                "nav.quote": "Request Quote",
+                "hero.badge": "Inspection Excellence",
+                "hero.title1": "Smart Insight",
+                "hero.title2": "Technologies",
+                "hero.subtitle": "Advanced NDT & Asset Integrity Services for Industrial Excellence in Algeria",
+                "hero.cta1": "Explore Services",
+                "hero.cta2": "Contact Us",
+                "stats.years": "Years Experience",
+                "stats.projects": "Projects Completed",
+                "stats.experts": "Certified Experts",
+                "stats.support": "/7 Support",
+                "about.label": "Who We Are",
+                "about.title": "Precision Inspection for Critical Assets",
+                "about.p1": "Smart Insight Technologies (SIT) is an Algeria-based inspection and asset integrity services company specializing in Non-Destructive Testing (NDT). We help operators reduce risk, prevent unplanned shutdowns, and extend asset life.",
+                "about.p2": "Our team of certified inspectors utilizes cutting-edge technology to detect corrosion, cracking, manufacturing defects, and in-service degradation without damaging your equipment. We combine technical excellence with safety-first execution.",
+                "about.feature1": "Safety First",
+                "about.feature1desc": "HSE aligned with industrial standards",
+                "about.feature2": "Advanced Tech",
+                "about.feature2desc": "PAUT, TOFD, Drones & Robotics",
+                "about.feature3": "Evidence Based",
+                "about.feature3desc": "Detailed reporting & traceability",
+                "about.feature4": "Rapid Response",
+                "about.feature4desc": "24/7 availability for turnarounds",
+                "about.certified": "Certified Personnel",
+                "about.cta": "Learn More About Us",
+                "services.label": "Our Expertise",
+                "services.title": "Comprehensive NDT Solutions",
+                "services.subtitle": "From conventional methods to advanced robotics, we deliver precision inspection services tailored to your assets.",
+                "services.conv.title": "Conventional NDT",
+                "services.conv.desc": "VT, UT, PT, MT, RT, ET, LT, IR Thermography, PMI, and Hardness Testing for comprehensive field and workshop inspections.",
+                "services.advanced.title": "Advanced NDT",
+                "services.advanced.desc": "PAUT, TOFD, Guided Wave UT, ACFM, PEC/PECT, ECA, and automated scanners for complex inspection challenges.",
+                "services.tube.title": "Tube Inspection",
+                "services.tube.desc": "ECT, RFT, NFT, MFL, and IRIS inspection for heat exchangers and air coolers with detailed tube sheet mapping.",
+                "services.drone.title": "Drone Inspection",
+                "services.drone.desc": "Aerial surveys for stacks, flares, tanks, and structures with optional IR thermography and photogrammetry.",
+                "services.robotics.title": "Robotic Inspection",
+                "services.robotics.desc": "Confined space and difficult-access solutions for tanks, vessels, and ducts with visual and NDT payloads.",
+                "services.shutdown.title": "Turnaround Support",
+                "services.shutdown.desc": "Rapid mobilization for shutdown inspections, expedited reporting, re-inspections, and punch-list closeout support.",
+                "services.learnmore": "Learn More",
+                "industries.label": "Industries Served",
+                "industries.title": "Trusted Across Critical Sectors",
+                "industries.oil": "Oil & Gas",
+                "industries.oildesc": "Upstream, midstream, downstream refining",
+                "industries.petro": "Petrochemical",
+                "industries.petrodesc": "Process plants & chemical facilities",
+                "industries.power": "Power & Utilities",
+                "industries.powerdesc": "Generation & distribution assets",
+                "industries.industrial": "Industrial",
+                "industries.industrialdesc": "Cement, steel, manufacturing",
+                "industries.assets": "Typical Assets We Inspect",
+                "assets.vessels": "Pressure Vessels",
+                "assets.piping": "Piping Systems",
+                "assets.tanks": "Storage Tanks",
+                "assets.heaters": "Heaters & Boilers",
+                "assets.exchangers": "Heat Exchangers",
+                "assets.columns": "Columns",
+                "assets.structures": "Structures",
+                "assets.flares": "Flare Systems",
+                "projects.label": "Case Studies",
+                "projects.title": "Proven Results",
+                "projects.viewall": "View All Projects",
+                "projects.readmore": "Read More",
+                "projects.p1.title": "Refinery Turnaround",
+                "projects.p1.desc": "Complete weld inspection of 450+ joints using PAUT/TOFD during 14-day shutdown, zero delays.",
+                "projects.p2.title": "Pipeline Screening",
+                "projects.p2.desc": "12km non-piggable pipeline screened using Guided Wave UT, identified 23 critical locations for excavation.",
+                "projects.p3.title": "Tank Floor Scan",
+                "projects.p3.desc": "MFL scanning of 6 crude oil storage tanks (40m diameter), detected floor corrosion without cleaning.",
+                "projects.p4.title": "Heat Exchanger Bundle",
+                "projects.p4.desc": "Tube inspection of 4 large heat exchangers using ECT and IRIS, prioritized 15% tubes for plugging.",
+                "projects.p5.title": "Flare Stack Survey",
+                "projects.p5.desc": "Drone inspection of 85m flare stack and structure, eliminated scaffolding requirements, 70% cost savings.",
+                "projects.p6.title": "Confined Space Entry",
+                "projects.p6.desc": "Robotic inspection of 4 storage tanks without human entry, UT thickness measurements and visual documentation.",
+                "equipment.label": "Our Equipment",
+                "equipment.title": "State-of-the-Art Technology",
+                "cert.label": "Certifications",
+                "cert.title": "Quality & Compliance",
+                "cert.iso9712": "Personnel certification in NDT methods. Level II and III certified inspectors.",
+                "cert.asnt": "American Society for Nondestructive Testing compliance and procedures.",
+                "cert.iso9001": "Quality Management System certification for consistent service delivery.",
+                "cert.iso45001": "Occupational Health and Safety Management System certification.",
+                "contact.label": "Get In Touch",
+                "contact.title": "Request a Quote",
+                "contact.subtitle": "Ready to discuss your inspection needs? Contact us for a detailed proposal tailored to your assets and schedule.",
+                "contact.address.label": "Address",
+                "contact.address.detail": "Serving all industrial zones nationwide",
+                "contact.phone.label": "Phone",
+                "contact.phone.detail": "24/7 Emergency Support",
+                "contact.email.detail": "Response within 24 hours",
+                "contact.whatsapp.detail": "Quick inquiries",
+                "form.name": "Full Name *",
+                "form.company": "Company *",
+                "form.email": "Email *",
+                "form.phone": "Phone",
+                "form.service": "Service Required *",
+                "form.select": "Select a service...",
+                "form.message": "Project Details *",
+                "form.submit": "Send Request",
+                "toast.title": "Message Sent!",
+                "toast.message": "We'll get back to you within 24 hours.",
+                "footer.about": "Algeria's leading NDT and asset integrity service provider, delivering precision inspection solutions for critical industrial infrastructure.",
+                "footer.services": "Services",
+                "footer.industries": "Industries",
+                "footer.contact": "Contact",
+                "footer.rights": "All rights reserved.",
+                "footer.privacy": "Privacy Policy",
+                "footer.terms": "Terms of Service"
+            },
+            fr: {
+                "nav.home": "Accueil",
+                "nav.about": "À Propos",
+                "nav.services": "Services",
+                "nav.industries": "Industries",
+                "nav.projects": "Projets",
+                "nav.contact": "Contact",
+                "nav.quote": "Demander un Devis",
+                "hero.badge": "Excellence en Inspection",
+                "hero.title1": "Smart Insight",
+                "hero.title2": "Technologies",
+                "hero.subtitle": "Services Avancés de CND et d'Intégrité des Actifs pour l'Excellence Industrielle en Algérie",
+                "hero.cta1": "Explorer les Services",
+                "hero.cta2": "Contactez-Nous",
+                "stats.years": "Années d'Expérience",
+                "stats.projects": "Projets Réalisés",
+                "stats.experts": "Experts Certifiés",
+                "stats.support": "/7 Support",
+                "about.label": "Qui Nous Sommes",
+                "about.title": "Inspection de Précision pour Actifs Critiques",
+                "about.p1": "Smart Insight Technologies (SIT) est une entreprise algérienne d'inspection et d'intégrité des actifs spécialisée dans le Contrôle Non Destructif (CND). Nous aidons les opérateurs à réduire les risques, prévenir les arrêts imprévus et prolonger la durée de vie des actifs.",
+                "about.p2": "Notre équipe d'inspecteurs certifiés utilise des technologies de pointe pour détecter la corrosion, les fissures, les défauts de fabrication et la dégradation en service sans endommager votre équipement.",
+                "about.feature1": "Sécurité d'Abord",
+                "about.feature1desc": "HSE aligné sur les normes industrielles",
+                "about.feature2": "Tech Avancée",
+                "about.feature2desc": "PAUT, TOFD, Drones & Robotique",
+                "about.feature3": "Basé sur Preuves",
+                "about.feature3desc": "Rapports détaillés & traçabilité",
+                "about.feature4": "Réponse Rapide",
+                "about.feature4desc": "Disponibilité 24/7 pour arrêts",
+                "about.certified": "Personnel Certifié",
+                "about.cta": "En Savoir Plus",
+                "services.label": "Notre Expertise",
+                "services.title": "Solutions CND Complètes",
+                "services.subtitle": "Des méthodes conventionnelles à la robotique avancée, nous fournissons des services d'inspection de précision adaptés à vos actifs.",
+                "services.conv.title": "CND Conventionnel",
+                "services.conv.desc": "VT, UT, PT, MT, RT, ET, LT, Thermographie IR, PMI et Essais de Dureté pour des inspections complètes sur site et en atelier.",
+                "services.advanced.title": "CND Avancé",
+                "services.advanced.desc": "PAUT, TOFD, UT Ondes Guidées, ACFM, PEC/PECT, ECA et scanners automatisés pour les défis d'inspection complexes.",
+                "services.tube.title": "Inspection de Tubes",
+                "services.tube.desc": "ECT, RFT, NFT, MFL et IRIS pour échangeurs de chaleur et refroidisseurs aériens avec cartographie détaillée.",
+                "services.drone.title": "Inspection par Drone",
+                "services.drone.desc": "Levés aériens pour cheminées, torchères, réservoirs et structures avec thermographie IR et photogrammétrie.",
+                "services.robotics.title": "Inspection Robotique",
+                "services.robotics.desc": "Solutions pour espaces confinés et accès difficiles avec charges utiles visuelles et CND.",
+                "services.shutdown.title": "Support Arrêts",
+                "services.shutdown.desc": "Mobilisation rapide pour inspections d'arrêt, rapports accélérés, ré-inspections et support clôture.",
+                "services.learnmore": "En Savoir Plus",
+                "industries.label": "Industries Servies",
+                "industries.title": "Confiance dans les Secteurs Critiques",
+                "industries.oil": "Pétrole & Gaz",
+                "industries.oildesc": "Amont, aval, raffinage",
+                "industries.petro": "Pétrochimie",
+                "industries.petrodesc": "Usines de procédés & chimie",
+                "industries.power": "Énergie & Services",
+                "industries.powerdesc": "Production & distribution",
+                "industries.industrial": "Industriel",
+                "industries.industrialdesc": "Ciment, acier, fabrication",
+                "industries.assets": "Actifs Typiques Inspectés",
+                "assets.vessels": "Appareils à Pression",
+                "assets.piping": "Canalisations",
+                "assets.tanks": "Réservoirs de Stockage",
+                "assets.heaters": "Réchauffeurs & Chaudières",
+                "assets.exchangers": "Échangeurs de Chaleur",
+                "assets.columns": "Colonnes",
+                "assets.structures": "Structures",
+                "assets.flares": "Systèmes de Torchères",
+                "projects.label": "Études de Cas",
+                "projects.title": "Résultats Prouvés",
+                "projects.viewall": "Voir Tous les Projets",
+                "projects.readmore": "Lire Plus",
+                "projects.p1.title": "Arrêt Raffineur",
+                "projects.p1.desc": "Inspection complète de 450+ soudures PAUT/TOFD pendant 14 jours, zéro retard.",
+                "projects.p2.title": "Inspection Pipeline",
+                "projects.p2.desc": "12km pipeline non-piggable screené par UT Ondes Guidées, 23 points critiques identifiés.",
+                "projects.p3.title": "Scan Fond Réservoir",
+                "projects.p3.desc": "Scan MFL de 6 réservoirs brut (40m diamètre), corrosion détectée sans nettoyage.",
+                "projects.p4.title": "Faisceau Échangeur",
+                "projects.p4.desc": "Inspection tubes de 4 échangeurs ECT/IRIS, 15% tubes priorisés pour bouchage.",
+                "projects.p5.title": "Inspection Torchère",
+                "projects.p5.desc": "Inspection drone torchère 85m, échafaudage éliminé, économie 70%.",
+                "projects.p6.title": "Espace Confiné",
+                "projects.p6.desc": "Inspection robotique 4 réservoirs sans entrée humaine, mesures UT et documentation.",
+                "equipment.label": "Notre Équipement",
+                "equipment.title": "Technologie d'Avant-Garde",
+                "cert.label": "Certifications",
+                "cert.title": "Qualité & Conformité",
+                "cert.iso9712": "Certification personnel CND. Inspecteurs niveau II et III certifiés.",
+                "cert.asnt": "Conformité American Society for Nondestructive Testing.",
+                "cert.iso9001": "Certification Système de Management de la Qualité.",
+                "cert.iso45001": "Certification Système de Management Santé et Sécurité.",
+                "contact.label": "Contactez-Nous",
+                "contact.title": "Demander un Devis",
+                "contact.subtitle": "Prêt à discuter de vos besoins d'inspection ? Contactez-nous pour une proposition détaillée.",
+                "contact.address.label": "Adresse",
+                "contact.address.detail": "Toutes zones industrielles nationales",
+                "contact.phone.label": "Téléphone",
+                "contact.phone.detail": "Support Urgence 24/7",
+                "contact.email.detail": "Réponse sous 24h",
+                "contact.whatsapp.detail": "Questions rapides",
+                "form.name": "Nom Complet *",
+                "form.company": "Entreprise *",
+                "form.email": "Email *",
+                "form.phone": "Téléphone",
+                "form.service": "Service Requis *",
+                "form.select": "Sélectionnez un service...",
+                "form.message": "Détails du Projet *",
+                "form.submit": "Envoyer la Demande",
+                "toast.title": "Message Envoyé !",
+                "toast.message": "Nous vous répondrons sous 24 heures.",
+                "footer.about": "Leader algérien des services CND et d'intégrité des actifs, fournissant des solutions d'inspection de précision.",
+                "footer.services": "Services",
+                "footer.industries": "Industries",
+                "footer.contact": "Contact",
+                "footer.rights": "Tous droits réservés.",
+                "footer.privacy": "Politique de Confidentialité",
+                "footer.terms": "Conditions d'Utilisation"
+            },
+            ar: {
+                "nav.home": "الرئيسية",
+                "nav.about": "من نحن",
+                "nav.services": "الخدمات",
+                "nav.industries": "الصناعات",
+                "nav.projects": "المشاريع",
+                "nav.contact": "اتصل بنا",
+                "nav.quote": "طلب عرض سعر",
+                "hero.badge": "تميز في الفحص",
+                "hero.title1": "سمارت إنسايت",
+                "hero.title2": "تكنولوجيز",
+                "hero.subtitle": "خدمات الفحص غير المتلف والسلامة الأصولية المتقدمة للتميز الصناعي في الجزائر",
+                "hero.cta1": "استكشف الخدمات",
+                "hero.cta2": "اتصل بنا",
+                "stats.years": "سنوات خبرة",
+                "stats.projects": "مشروع منجز",
+                "stats.experts": "خبير معتمد",
+                "stats.support": "/7 دعم",
+                "about.label": "من نحن",
+                "about.title": "فحص دقيق للأصول الحرجة",
+                "about.p1": "سمارت إنسايت تكنولوجيز (سيت) هي شركة جزائرية متخصصة في الفحص غير المتلف والسلامة الأصولية. نساعد المشغلين على تقليل المخاطر ومنع التوقفات غير المخطط وإطالة عمر الأصول.",
+                "about.p2": "يستخدم فريقنا من المفتشين المعتمدين أحدث التقنيات للكشف عن التآكل والتشققات بدون إتلاف المعدات.",
+                "about.feature1": "السلامة أولاً",
+                "about.feature1desc": "الصحة والسلامة بما يتماشى مع المعايير",
+                "about.feature2": "تقنية متقدمة",
+                "about.feature2desc": "PAUT، TOFD، الطائرات بدون طيار والروبوتات",
+                "about.feature3": "مبني على الأدلة",
+                "about.feature3desc": "تقارير مفصلة وتتبع",
+                "about.feature4": "استجابة سريعة",
+                "about.feature4desc": "متاح 24/7 لأعمال الصيانة",
+                "about.certified": "موظفون معتمدون",
+                "about.cta": "اعرف المزيد عنا",
+                "services.label": "خبرتنا",
+                "services.title": "حلول الفحص الشاملة",
+                "services.subtitle": "من الطرق التقليدية إلى الروبوتات المتقدمة، نقدم خدمات فحص دقيقة مخصصة لأصولك.",
+                "services.conv.title": "الفحص التقليدي",
+                "services.conv.desc": "الفحص البصري، بالموجات فوق الصوتية، بالتغلغل، بالجسيمات المغناطيسية، بالأشعة، بالتيارات الدوامية، واختبارات الصلابة.",
+                "services.advanced.title": "الفحص المتقدم",
+                "services.advanced.desc": "PAUT، TOFD، الموجات الموجهة، ACFM، PEC، والماسحات الضوئية الآلية.",
+                "services.tube.title": "فحص الأنابيب",
+                "services.tube.desc": "ECT، RFT، NFT، MFL، وIRIS لمبادلات الحرارة والمبردات الهوائية.",
+                "services.drone.title": "الفحص بالطائرات",
+                "services.drone.desc": "مسح جوي للمداخن والخزانات والهياكل مع التصوير الحراري.",
+                "services.robotics.title": "الفحص بالروبوتات",
+                "services.robotics.desc": "حلول للأماكن الضيقة والوصول الصعب مع حمولات بصرية وCND.",
+                "services.shutdown.title": "دعم أعمال الصيانة",
+                "services.shutdown.desc": "التعبئة السريعة لفحوصات التوقف والتقارير السريعة.",
+                "services.learnmore": "اعرف المزيد",
+                "industries.label": "الصناعات المخدومة",
+                "industries.title": "موثوق به في القطاعات الحرجة",
+                "industries.oil": "النفط والغاز",
+                "industries.oildesc": "المنبع والمصب والتكرير",
+                "industries.petro": "البتروكيماويات",
+                "industries.petrodesc": "مصانع العمليات والمواد الكيميائية",
+                "industries.power": "الطاقة والخدمات",
+                "industries.powerdesc": "أصول التوليد والتوزيع",
+                "industries.industrial": "صناعي",
+                "industries.industrialdesc": "أسمنت، حديد، تصنيع",
+                "industries.assets": "الأصول النموذجية التي نفحصها",
+                "assets.vessels": "أوعية الضغط",
+                "assets.piping": "أنظمة الأنابيب",
+                "assets.tanks": "خزانات التخزين",
+                "assets.heaters": "السخانات والمراجل",
+                "assets.exchangers": "مبادلات الحرارة",
+                "assets.columns": "الأعمدة",
+                "assets.structures": "الهياكل",
+                "assets.flares": "أنظمة الشعلات",
+                "projects.label": "دراسات الحالة",
+                "projects.title": "نتائج مثبتة",
+                "projects.viewall": "عرض جميع المشاريع",
+                "projects.readmore": "اقرأ المزيد",
+                "projects.p1.title": "صيانة المصفاة",
+                "projects.p1.desc": "فحص كامل لـ 450+ لحام باستخدام PAUT/TOFD خلال 14 يوماً.",
+                "projects.p2.title": "فحص خط الأنابيب",
+                "projects.p2.desc": "فحص 12 كم من خط الأنابيب باستخدام الموجات الموجهة.",
+                "projects.p3.title": "فحص قاع الخزان",
+                "projects.p3.desc": "فحص MFL لـ 6 خزانات نفط خام، كشف التآكل بدون تنظيف.",
+                "projects.p4.title": "حزمة المبادل الحراري",
+                "projects.p4.desc": "فحص أنابيب 4 مبادلات حرارية باستخدام ECT وIRIS.",
+                "projects.p5.title": "مسح شعلة الاحتراق",
+                "projects.p5.desc": "فحص طائرة بدون طيار لشعلة 85م، إلغاء السقالات، توفير 70%.",
+                "projects.p6.title": "الدخول للأماكن الضيقة",
+                "projects.p6.desc": "فحص روبوتي لـ 4 خزانات بدون دخول بشري.",
+                "equipment.label": "معداتنا",
+                "equipment.title": "تكنولوجيا متطورة",
+                "cert.label": "الشهادات",
+                "cert.title": "الجودة والامتثال",
+                "cert.iso9712": "شهادة الموظفين في طرق الفحص غير المتلف. مفتشون معتمدون من المستوى الثاني والثالث.",
+                "cert.asnt": "الامتثال لجمعية الفحص غير المتلف الأمريكية.",
+                "cert.iso9001": "شهادة نظام إدارة الجودة.",
+                "cert.iso45001": "شهادة نظام إدارة الصحة والسلامة المهنية.",
+                "contact.label": "تواصل معنا",
+                "contact.title": "اطلب عرض سعر",
+                "contact.subtitle": "جاهز لمناقشة احتياجات الفحص الخاصة بك؟ اتصل بنا للحصول على اقتراح مفصل.",
+                "contact.address.label": "العنوان",
+                "contact.address.detail": "خدمة جميع المناطق الصناعية على المستوى الوطني",
+                "contact.phone.label": "الهاتف",
+                "contact.phone.detail": "دعم الطوارئ 24/7",
+                "contact.email.detail": "الرد خلال 24 ساعة",
+                "contact.whatsapp.detail": "استفسارات سريعة",
+                "form.name": "الاسم الكامل *",
+                "form.company": "الشركة *",
+                "form.email": "البريد الإلكتروني *",
+                "form.phone": "الهاتف",
+                "form.service": "الخدمة المطلوبة *",
+                "form.select": "اختر خدمة...",
+                "form.message": "تفاصيل المشروع *",
+                "form.submit": "إرسال الطلب",
+                "toast.title": "تم إرسال الرسالة!",
+                "toast.message": "سنرد عليك خلال 24 ساعة.",
+                "footer.about": "الشركة الرائدة في الجزائر في خدمات الفحص غير المتلف والسلامة الأصولية.",
+                "footer.services": "الخدمات",
+                "footer.industries": "الصناعات",
+                "footer.contact": "اتصل بنا",
+                "footer.rights": "جميع الحقوق محفوظة.",
+                "footer.privacy": "سياسة الخصوصية",
+                "footer.terms": "شروط الخدمة"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.lang === lang) btn.classList.add('active');
+            });
+            
+            // Update text content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if(translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update HTML lang attribute and direction
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Re-initialize icons for RTL
+            lucide.createIcons();
+        }
+
+        // Service Modal Data
+        const serviceData = {
+            conventional: {
+                title: "Conventional NDT",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Conventional NDT Methods</h3>
+                    <p class="text-gray-300 mb-6">Our conventional NDT services provide reliable, cost-effective inspection solutions for routine maintenance and quality control.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>VT (Visual Testing):</strong> Direct visual inspection and Remote Visual Inspection (RVI) using borescope.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>UT (Ultrasonic Testing):</strong> Thickness measurements (UTG), spot checks, basic flaw detection.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>PT (Liquid Penetrant):</strong> Surface-breaking defect detection on non-porous materials.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>MT (Magnetic Particle):</strong> Surface and near-surface defects in ferromagnetic materials.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>RT (Radiographic Testing):</strong> Volumetric inspection for welds and components.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>ET (Eddy Current):</strong> Surface and near-surface inspection and screening.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>LT (Leak Testing):</strong> Pressure change/bubble tests and other leak test methods.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>IR Thermography:</strong> Thermal screening to identify anomalies and heat patterns.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>PMI & Hardness Testing:</strong> Material verification and mechanical property assessment.</div></li>
+                    </ul>
+                `
+            },
+            advanced: {
+                title: "Advanced NDT",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Advanced NDT Techniques</h3>
+                    <p class="text-gray-300 mb-6">High-value techniques for complex inspection challenges requiring detailed characterization and sizing.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>PAUT (Phased Array):</strong> Weld inspection, sizing, corrosion mapping, advanced flaw characterization.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>TOFD (Time of Flight Diffraction):</strong> Weld integrity assessment and accurate defect sizing.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Guided Wave UT (LRUT):</strong> Long-range pipeline screening for non-piggable/difficult access lines.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>ACFM (Alternating Current Field):</strong> Crack detection and sizing through coatings.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Pulsed Eddy Current (PEC):</strong> Corrosion screening through insulation/coatings (CUI/CUF).</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Eddy Current Array (ECA):</strong> Rapid surface inspection with detailed imaging.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>MFL Tank Floor:</strong> Magnetic flux leakage scanning for tank bottom plates.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Acoustic Emission (AE):</strong> Monitoring for active damage mechanisms.</div></li>
+                    </ul>
+                `
+            },
+            tube: {
+                title: "Tube Inspection",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Heat Exchanger & Air Cooler Inspection</h3>
+                    <p class="text-gray-300 mb-6">Specialized techniques for tubular heat transfer equipment to ensure reliable operation and maintenance planning.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>ECT (Eddy Current):</strong> For non-ferromagnetic tubes, detects pits, cracks, and wall loss.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>RFT (Remote Field):</strong> For ferromagnetic tubes, detects internal and external defects.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>NFT (Near Field):</strong> Optimized for fin-fan air cooler tubes.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>IRIS (Internal Rotary):</strong> Ultrasonic technique for accurate wall thickness measurements.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>MFL (Magnetic Flux Leakage):</strong> Fast screening for ferromagnetic tubes.</div></li>
+                    </ul>
+                    <p class="text-gray-400">Deliverables include tube sheet maps, indication lists with severity ranking, and maintenance recommendations.</p>
+                `
+            },
+            drone: {
+                title: "Drone Inspection",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Aerial Industrial Inspection</h3>
+                    <p class="text-gray-300 mb-6">Safe, efficient aerial surveys for hard-to-reach structures without scaffolding or rope access.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Visual Surveys:</strong> High-resolution imaging of stacks, flares, tanks, structures, pipe racks, roofs.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Thermography:</strong> IR payload for detecting heat anomalies, insulation defects, and electrical issues.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Photogrammetry:</strong> 3D modeling and digital twins for asset documentation.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Repeatable Routes:</strong> Automated flight paths for consistent periodic inspections.</div></li>
+                    </ul>
+                    <p class="text-gray-400">Certified drone pilots with industrial experience and ATEX-rated equipment where required.</p>
+                `
+            },
+            robotics: {
+                title: "Robotic Inspection",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Robotic & Crawler Solutions</h3>
+                    <p class="text-gray-300 mb-6">Confined space and hazardous environment inspection without human entry.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Tank Inspection:</strong> Crawlers for floor and shell examination while in service or out of service.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Vessel Entry:</strong> Magnetic crawlers for vertical surfaces and complex geometries.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>NDT Payloads:</strong> UT thickness measurement, visual, and other sensor integration.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Duct & Pipe:</strong> Internal crawlers for pipeline and duct inspection.</div></li>
+                    </ul>
+                    <p class="text-gray-400">Eliminates confined space entry risks and reduces scaffolding requirements by up to 70%.</p>
+                `
+            },
+            shutdown: {
+                title: "Turnaround Support",
+                content: `
+                    <h3 class="font-display text-2xl font-bold mb-4">Shutdown & Turnaround Services</h3>
+                    <p class="text-gray-300 mb-6">Rapid mobilization and execution to keep your critical path on schedule.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Rapid Mobilization:</strong> Teams ready for emergency and planned shutdowns.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Expedited Reporting:</strong> Same-day or next-day reports for critical path decisions.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Re-inspections:</strong> Fast turnaround for repair verification.</div></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-sit-accent mt-0.5"></i><div><strong>Punch List Support:</strong> Final documentation and closeout assistance.</div></li>
+                    </ul>
+                    <p class="text-gray-400">24/7 availability during turnaround windows with dedicated project management.</p>
+                `
+            }
+        };
+
+        function openServiceModal(service) {
+            const modal = document.getElementById('serviceModal');
+            const content = document.getElementById('modalContent');
+            const body = document.getElementById('modalBody');
+            
+            body.innerHTML = serviceData[service].content;
+            lucide.createIcons();
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('serviceModal');
+            const content = document.getElementById('modalContent');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Form Handling
+        function handleSubmit(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+            
+            e.target.reset();
+        }
+
+        // Hero Canvas Animation
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(245, 158, 11, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${0.2 * (1 - dist / 150)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        initParticles();
+        animate();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
