@@ -1,0 +1,94 @@
+<!-- Hero Section -->
+<section id="home" class="relative h-screen flex flex-col bg-sit-primary">
+    
+    <!-- Top 3/4 - Background Image with Text Overlay -->
+    <div class="relative h-[75%] w-full overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="assets/industrial-background.jpg" 
+                 alt="Industrial facility" 
+                 class="w-full h-full object-cover object-center">
+        </div>
+        
+        <!-- Dark Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-sit-primary"></div>
+        
+        <!-- Industrial Grid Pattern -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" 
+             style="background-image: 
+                linear-gradient(rgba(245,158,11,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245,158,11,0.2) 1px, transparent 1px);
+                background-size: 60px 60px;">
+        </div>
+
+        <!-- Canvas for particles -->
+        <canvas id="hero-canvas"></canvas>
+
+        <!-- Text Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-sit-accent/30 mb-8 animate-fade-in-up">
+                <span class="w-2 h-2 bg-sit-accent rounded-full animate-pulse"></span>
+                <span class="text-sm font-medium tracking-widest uppercase text-white" data-i18n="hero.badge">Inspection Excellence</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-white drop-shadow-2xl animate-fade-in-up delay-100">
+                <span class="block tracking-tight" data-i18n="hero.title1">Smart Insight</span>
+                <span class="block text-sit-accent mt-2 tracking-tight" data-i18n="hero.title2">Technologies</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-10 font-light leading-relaxed drop-shadow-lg animate-fade-in-up delay-200" data-i18n="hero.subtitle">
+                Advanced NDT & Asset Integrity Services for Industrial Excellence in Algeria
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-300">
+                <a href="#services" class="group bg-sit-accent hover:bg-sit-accentHover text-sit-primary px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-sit-accent/30 flex items-center gap-2 hover:-translate-y-1">
+                    <span data-i18n="hero.cta1">Explore Services</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#contact" class="group border-2 border-white/40 hover:border-sit-accent hover:text-sit-accent text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-1 backdrop-blur-sm bg-white/5 hover:bg-white/10">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    <span data-i18n="hero.cta2">Contact Us</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-white/70"></i>
+        </div>
+    </div>
+
+    <!-- Bottom 1/4 - Stats Section -->
+    <div class="h-[25%] bg-sit-primary border-t border-white/10 flex items-center relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide" data-i18n="stats.years">Years Experience</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide" data-i18n="stats.projects">Projects Completed</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide" data-i18n="stats.experts">Certified Experts</div>
+                </div>
+                <div class="text-center group">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-sit-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                    <div class="text-sm md:text-base text-gray-400 font-medium tracking-wide" data-i18n="stats.support">Emergency Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

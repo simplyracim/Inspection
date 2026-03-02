@@ -1,0 +1,84 @@
+<!-- Navigation Component -->
+<nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+    <div class="glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-sit-accent rounded-lg flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform">
+                        <span class="font-display font-bold text-sit-primary text-xl">SIT</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-display font-bold text-xl leading-none text-white">SMART INSIGHT</div>
+                        <div class="text-xs text-sit-accent tracking-widest">TECHNOLOGIES</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors" data-i18n="nav.home">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors" data-i18n="nav.about">About</a>
+                    <div class="relative group">
+                        <button class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors flex items-center gap-1">
+                            <span data-i18n="nav.services">Services</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-64 glass rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 origin-top">
+                            <div class="py-2">
+                                <a href="#services" class="block px-4 py-2 text-sm text-white hover:bg-sit-accent/10 hover:text-sit-accent transition-colors">Conventional NDT</a>
+                                <a href="#advanced" class="block px-4 py-2 text-sm text-white hover:bg-sit-accent/10 hover:text-sit-accent transition-colors">Advanced NDT</a>
+                                <a href="#tube" class="block px-4 py-2 text-sm text-white hover:bg-sit-accent/10 hover:text-sit-accent transition-colors">Tube Inspection</a>
+                                <a href="#drone" class="block px-4 py-2 text-sm text-white hover:bg-sit-accent/10 hover:text-sit-accent transition-colors">Drone Inspection</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#industries" class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors" data-i18n="nav.industries">Industries</a>
+                    <a href="#projects" class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors" data-i18n="nav.projects">Projects</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-white hover:text-sit-accent transition-colors" data-i18n="nav.contact">Contact</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-4">
+                    <!-- Language Switcher -->
+                    <div class="hidden md:flex items-center gap-1 bg-sit-secondary/50 rounded-lg p-1">
+                        <button onclick="setLanguage('en')" class="lang-btn active text-white" data-lang="en">EN</button>
+                        <button onclick="setLanguage('fr')" class="lang-btn text-white hover:text-sit-accent" data-lang="fr">FR</button>
+                        <button onclick="setLanguage('ar')" class="lang-btn text-white hover:text-sit-accent" data-lang="ar">AR</button>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <a href="#contact" class="hidden sm:flex magnetic-btn bg-sit-accent hover:bg-sit-accentHover text-sit-primary px-6 py-2.5 rounded-lg font-semibold text-sm transition-all hover:shadow-lg hover:shadow-sit-accent/25" data-i18n="nav.quote">
+                        Request Quote
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="lg:hidden p-2 hover:bg-white/5 rounded-lg transition-colors text-white" onclick="toggleMobileMenu()" id="mobile-menu-btn">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu fixed inset-0 z-40 bg-sit-primary pt-20 px-6 lg:hidden" id="mobile-menu">
+    <button class="absolute top-6 right-6 p-2 text-white" onclick="toggleMobileMenu()" id="mobile-menu-close">
+        <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="flex flex-col gap-6 text-lg">
+        <a href="#home" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.home">Home</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.about">About</a>
+        <a href="#services" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.services">Services</a>
+        <a href="#industries" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.industries">Industries</a>
+        <a href="#projects" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.projects">Projects</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="border-b border-white/10 pb-4 text-white" data-i18n="nav.contact">Contact</a>
+        
+        <div class="flex gap-2 mt-4">
+            <button onclick="setLanguage('en'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors text-white">English</button>
+            <button onclick="setLanguage('fr'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors text-white">Français</button>
+            <button onclick="setLanguage('ar'); toggleMobileMenu()" class="flex-1 py-3 border border-white/20 rounded-lg hover:bg-sit-accent hover:text-sit-primary transition-colors text-white">العربية</button>
+        </div>
+    </div>
+</div>

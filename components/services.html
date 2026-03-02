@@ -1,0 +1,178 @@
+<!-- Services Section -->
+<section id="services" class="relative min-h-screen flex flex-col">
+    
+    <!-- Top 3/4 - Background with Content Overlay -->
+    <div class="relative h-[75%] min-h-[600px] w-full overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="assets/services-background.jpg" 
+                 alt="Industrial services" 
+                 class="w-full h-full object-cover object-center"
+                 onerror="this.style.display='none'; document.getElementById('services-fallback').style.display='block';">
+            
+            <!-- Fallback -->
+            <div id="services-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-slate-900 via-sit-secondary to-slate-900">
+                <div class="absolute inset-0 opacity-20" 
+                     style="background-image: 
+                        linear-gradient(rgba(245,158,11,0.1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(245,158,11,0.1) 1px, transparent 1px);
+                        background-size: 50px 50px;">
+                </div>
+                <div class="absolute top-1/3 right-20 w-72 h-72 bg-sit-accent/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/3 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+            </div>
+            
+            <!-- Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-sit-primary"></div>
+            
+            <!-- Industrial Grid Pattern -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" 
+                 style="background-image: 
+                    linear-gradient(rgba(245,158,11,0.2) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(245,158,11,0.2) 1px, transparent 1px);
+                    background-size: 60px 60px;">
+            </div>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-7xl mx-auto w-full">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4 tracking-widest uppercase text-sm">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                        <span data-i18n="services.label">Our Expertise</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg" data-i18n="services.title">
+                        Comprehensive NDT <span class="text-sit-accent">Solutions</span>
+                    </h2>
+                    <p class="text-gray-200 text-lg sm:text-xl leading-relaxed drop-shadow-md">
+                        From conventional methods to advanced robotics, we deliver precision inspection services tailored to your assets.
+                    </p>
+                </div>
+
+                <!-- Service Cards Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Conventional NDT -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20" onclick="openServiceModal('conventional')">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="scan-eye" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Conventional NDT</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">VT, UT, PT, MT, RT, ET, LT, IR Thermography, PMI, and Hardness Testing for comprehensive field inspections.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">VT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">UT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">PT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">MT</span>
+                        </div>
+                    </div>
+
+                    <!-- Advanced NDT -->
+                    <div id="advanced" class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-sit-accent/30 backdrop-blur-md bg-black/20" onclick="openServiceModal('advanced')">
+                        <div class="w-12 h-12 rounded-xl bg-sit-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="scan-line" class="w-6 h-6 text-sit-accent"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Advanced NDT</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">PAUT, TOFD, Guided Wave UT, ACFM, PEC/PECT, ECA, and automated scanners for complex challenges.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">PAUT</span>
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">TOFD</span>
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">LRUT</span>
+                        </div>
+                    </div>
+
+                    <!-- Tube Inspection -->
+                    <div id="tube" class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20" onclick="openServiceModal('tube')">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="thermometer" class="w-6 h-6 text-green-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Tube Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">ECT, RFT, NFT, MFL, and IRIS inspection for heat exchangers and air coolers with detailed mapping.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">ECT</span>
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">RFT</span>
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">IRIS</span>
+                        </div>
+                    </div>
+
+                    <!-- Drone Inspection -->
+                    <div id="drone" class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20" onclick="openServiceModal('drone')">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="plane" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Drone Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Aerial surveys for stacks, flares, tanks, and structures with optional IR thermography.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/20 rounded text-xs text-purple-400">Aerial</span>
+                            <span class="px-2 py-1 bg-purple-500/20 rounded text-xs text-purple-400">Thermal</span>
+                        </div>
+                    </div>
+
+                    <!-- Robotic Inspection -->
+                    <div id="robotics" class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20" onclick="openServiceModal('robotics')">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="bot" class="w-6 h-6 text-red-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Robotic Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Confined space solutions for tanks, vessels, and ducts with visual and NDT payloads.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-red-500/20 rounded text-xs text-red-400">Crawler</span>
+                            <span class="px-2 py-1 bg-red-500/20 rounded text-xs text-red-400">UT</span>
+                        </div>
+                    </div>
+
+                    <!-- Turnaround Support -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20" onclick="openServiceModal('shutdown')">
+                        <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="timer" class="w-6 h-6 text-orange-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Turnaround Support</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Rapid mobilization for shutdown inspections, expedited reporting, and punch-list closeout.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-orange-500/20 rounded text-xs text-orange-400">24/7</span>
+                            <span class="px-2 py-1 bg-orange-500/20 rounded text-xs text-orange-400">Rapid</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom 1/4 - Service Details -->
+    <div class="h-[25%] min-h-[300px] bg-sit-primary border-t border-white/10 flex items-center relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Safety First</h4>
+                    <p class="text-gray-400 text-sm">All services executed with strict HSE protocols and certified personnel.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Rapid Response</h4>
+                    <p class="text-gray-400 text-sm">24/7 availability for emergency inspections and turnaround support.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="file-check" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Certified Reports</h4>
+                    <p class="text-gray-400 text-sm">Detailed documentation with full traceability and digital archives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

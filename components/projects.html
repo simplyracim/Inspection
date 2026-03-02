@@ -1,0 +1,187 @@
+<!-- Projects/Case Studies Section -->
+<section id="projects" class="relative min-h-screen py-24 overflow-hidden">
+    
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="assets/results-section.png" 
+             alt="Results background" 
+             class="w-full h-full object-cover object-center"
+             onerror="this.style.display='none'; document.getElementById('results-fallback').style.display='block';">
+        
+        <!-- Fallback -->
+        <div id="results-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-sit-primary via-sit-secondary to-slate-900">
+            <div class="absolute inset-0 opacity-20" 
+                 style="background-image: 
+                    linear-gradient(rgba(245,158,11,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(245,158,11,0.1) 1px, transparent 1px);
+                    background-size: 50px 50px;">
+            </div>
+        </div>
+        
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-sit-primary/85"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                    <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    <span class="tracking-widest uppercase text-sm" data-i18n="projects.label">Case Studies</span>
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold text-white" data-i18n="projects.title">
+                    Proven <span class="text-gradient">Results</span>
+                </h2>
+            </div>
+            <a href="#contact" class="mt-6 md:mt-0 magnetic-btn border-2 border-sit-accent text-sit-accent hover:bg-sit-accent hover:text-sit-primary px-6 py-3 rounded-lg font-semibold transition-all" data-i18n="projects.viewall">
+                View All Projects
+            </a>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop" alt="Refinery Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">PAUT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p1.title">Refinery Turnaround</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p1.desc">
+                        Complete weld inspection of 450+ joints using PAUT/TOFD during 14-day shutdown, zero delays.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Pipeline Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">LRUT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p2.title">Pipeline Screening</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p2.desc">
+                        12km non-piggable pipeline screened using Guided Wave UT, identified 23 critical locations for excavation.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Tank Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">MFL</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p3.title">Tank Floor Scan</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p3.desc">
+                        MFL scanning of 6 crude oil storage tanks (40m diameter), detected floor corrosion without cleaning.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1565514020176-dbf2277e4957?w=600&h=400&fit=crop" alt="Heat Exchanger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ECT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p4.title">Heat Exchanger Bundle</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p4.desc">
+                        Tube inspection of 4 large heat exchangers using ECT and IRIS, prioritized 15% tubes for plugging.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Drone Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">DRONE</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p5.title">Flare Stack Survey</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p5.desc">
+                        Drone inspection of 85m flare stack and structure, eliminated scaffolding requirements, 70% cost savings.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="Robotic Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ROBOT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p6.title">Confined Space Entry</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p6.desc">
+                        Robotic inspection of 4 storage tanks without human entry, UT thickness measurements and visual documentation.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

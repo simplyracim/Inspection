@@ -34,8 +34,8 @@
                         'sit': {
                             primary: '#0F172A',      // Deep navy
                             secondary: '#1E293B',   // Slate
-                            accent: '#F59E0B',       // Safety orange
-                            accentHover: '#D97706',
+                            accent: '#8A9BA8',       // Bleu platiné
+                            accentHover: '#6B7A87',
                             highlight: '#3B82F6',    // Tech blue
                             light: '#F8FAFC',
                             dark: '#020617',
@@ -55,9 +55,9 @@
             --cursor-size: 20px;
         }
         
-        * {
+        /* * {
             cursor: none;
-        }
+        } */
         
         body {
             font-family: 'Inter', sans-serif;
@@ -70,7 +70,7 @@
             font-family: 'Rajdhani', sans-serif;
         }
         
-        /* Custom Cursor */
+        /* Custom Cursor */ /*
         .cursor-dot,
         .cursor-outline {
             position: fixed;
@@ -85,22 +85,22 @@
         .cursor-dot {
             width: 8px;
             height: 8px;
-            background-color: #F59E0B;
+            background-color: #8A9BA8;
         }
         
         .cursor-outline {
             width: 40px;
             height: 40px;
-            border: 2px solid rgba(245, 158, 11, 0.5);
+            border: 2px solid rgba(138, 155, 168, 0.5);
             transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
         
         .cursor-outline.hover {
             width: 60px;
             height: 60px;
-            background-color: rgba(245, 158, 11, 0.1);
-            border-color: #F59E0B;
-        }
+            background-color: rgba(138, 155, 168, 0.1);
+            border-color: #8A9BA8;
+        } */
         
         /* Noise Texture */
         .noise-overlay {
@@ -136,20 +136,20 @@
         .glass-card {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(138, 155, 168, 0.2);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         
         /* Text Effects */
         .text-gradient {
-            background: linear-gradient(135deg, #F59E0B 0%, #3B82F6 100%);
+            background: linear-gradient(135deg, #8A9BA8 0%, #3B82F6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .text-outline {
-            -webkit-text-stroke: 2px rgba(245, 158, 11, 0.3);
+            -webkit-text-stroke: 2px rgba(138, 155, 168, 0.3);
             color: transparent;
         }
         
@@ -170,7 +170,7 @@
         
         .service-card:hover {
             transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 30px 60px -15px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 30px 60px -15px rgba(138, 155, 168, 0.3);
         }
         
         /* Scan Line Animation */
@@ -180,7 +180,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #F59E0B, transparent);
+            background: linear-gradient(90deg, transparent, #8A9BA8, transparent);
             animation: scan 3s linear infinite;
             opacity: 0.5;
         }
@@ -193,7 +193,7 @@
         /* Pulse Animation */
         .pulse-ring {
             position: absolute;
-            border: 2px solid #F59E0B;
+            border: 2px solid #8A9BA8;
             border-radius: 50%;
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -234,7 +234,7 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: #F59E0B;
+            background: #8A9BA8;
             border-radius: 4px;
         }
         
@@ -251,7 +251,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #F59E0B;
+            background: #8A9BA8;
             transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
@@ -266,7 +266,7 @@
         }
         
         .lang-btn.active {
-            background: #F59E0B;
+            background: #8A9BA8;
             color: #0F172A;
         }
         
@@ -278,15 +278,15 @@
         }
         
         .form-input:focus {
-            border-color: #F59E0B;
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+            border-color: #8A9BA8;
+            box-shadow: 0 0 0 3px rgba(138, 155, 168, 0.1);
         }
         
         /* Industrial Grid Background */
         .grid-bg {
             background-image: 
-                linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(138, 155, 168, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138, 155, 168, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
@@ -304,12 +304,12 @@
         /* Equipment Card */
         .equipment-card {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-            border: 1px solid rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(138, 155, 168, 0.1);
         }
         
         /* Timeline */
         .timeline-line {
-            background: linear-gradient(to bottom, #F59E0B, #3B82F6);
+            background: linear-gradient(to bottom, #8A9BA8, #3B82F6);
         }
         
         /* Mobile Menu */
@@ -345,7 +345,7 @@
         .loader-bar {
             width: 200px;
             height: 4px;
-            background: rgba(245, 158, 11, 0.2);
+            background: rgba(138, 155, 168, 0.2);
             border-radius: 2px;
             overflow: hidden;
         }
@@ -353,7 +353,7 @@
         .loader-progress {
             width: 0%;
             height: 100%;
-            background: #F59E0B;
+            background: #8A9BA8;
             animation: load 2s ease-in-out forwards;
         }
         
@@ -479,7 +479,7 @@
         
         <!-- Background Image -->
         <div class="absolute inset-0">
-            <img src="assets/industrial-background.png" 
+            <img src="assets/hero-background.png" 
                  alt="Industrial facility" 
                  class="w-full h-full object-cover object-center">
         </div>
@@ -490,8 +490,8 @@
         <!-- Optional: Industrial Grid Pattern Overlay -->
         <div class="absolute inset-0 opacity-10 pointer-events-none" 
              style="background-image: 
-                linear-gradient(rgba(245,158,11,0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(245,158,11,0.2) 1px, transparent 1px);
+                linear-gradient(rgba(138,155,168,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138,155,168,0.2) 1px, transparent 1px);
                 background-size: 60px 60px;">
         </div>
 
@@ -657,149 +657,184 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="relative py-24 bg-sit-primary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
-                    <i data-lucide="layers" class="w-5 h-5"></i>
-                    <span class="tracking-widest uppercase text-sm" data-i18n="services.label">Our Expertise</span>
-                </div>
-                <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6" data-i18n="services.title">
-                    Comprehensive NDT <span class="text-gradient">Solutions</span>
-                </h2>
-                <p class="text-gray-400 text-lg" data-i18n="services.subtitle">
-                    From conventional methods to advanced robotics, we deliver precision inspection services tailored to your assets.
-                </p>
+<!-- Services Section -->
+<section id="services" class="relative min-h-screen flex flex-col">
+    
+    <!-- Top 3/4 - Background with Content Overlay -->
+    <div class="relative h-[75%] min-h-[600px] w-full overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="assets/services-background.png" 
+                 alt="Industrial services" 
+                 class="w-full h-full object-cover object-center"
+                 onerror="this.style.display='none'; document.getElementById('services-fallback').style.display='block';">
+        </div>
+        
+        <!-- Fallback Gradient (shown if image fails) -->
+        <div id="services-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-slate-900 via-sit-secondary to-slate-900">
+            <div class="absolute inset-0 opacity-20" 
+                 style="background-image: 
+                    linear-gradient(rgba(138,155,168,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(138,155,168,0.1) 1px, transparent 1px);
+                    background-size: 50px 50px;">
             </div>
+            <div class="absolute top-1/3 right-20 w-72 h-72 bg-sit-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/3 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <!-- Dark Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-sit-primary"></div>
+        
+        <!-- Industrial Grid Pattern -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" 
+             style="background-image: 
+                linear-gradient(rgba(138,155,168,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138,155,168,0.2) 1px, transparent 1px);
+                background-size: 60px 60px;">
+        </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Conventional NDT -->
-                <div class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('conventional')">
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="scan-eye" class="w-7 h-7 text-blue-400"></i>
+        <!-- Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-7xl mx-auto w-full">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4 tracking-widest uppercase text-sm">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                        <span>Our Expertise</span>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.conv.title">Conventional NDT</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.conv.desc">
-                        VT, UT, PT, MT, RT, ET, LT, IR Thermography, PMI, and Hardness Testing for comprehensive field and workshop inspections.
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                        Comprehensive NDT <span class="text-sit-accent">Solutions</span>
+                    </h2>
+                    <p class="text-gray-200 text-lg sm:text-xl leading-relaxed drop-shadow-md">
+                        From conventional methods to advanced robotics, we deliver precision inspection services tailored to your assets.
                     </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">VT</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">UT</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">PT</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">MT</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">RT</span>
-                    </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
                 </div>
 
-                <!-- Advanced NDT -->
-                <div id="advanced" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('advanced')">
-                    <div class="w-14 h-14 rounded-xl bg-sit-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="scan-line" class="w-7 h-7 text-sit-accent"></i>
+                <!-- Service Cards Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Conventional NDT -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="scan-eye" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Conventional NDT</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">VT, UT, PT, MT, RT, ET, LT, IR Thermography, PMI, and Hardness Testing for comprehensive field inspections.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">VT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">UT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">PT</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">MT</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.advanced.title">Advanced NDT</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.advanced.desc">
-                        PAUT, TOFD, Guided Wave UT, ACFM, PEC/PECT, ECA, and automated scanners for complex inspection challenges.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">PAUT</span>
-                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">TOFD</span>
-                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">LRUT</span>
-                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">ACFM</span>
-                        <span class="px-3 py-1 bg-sit-accent/10 rounded-full text-xs text-sit-accent">PEC</span>
-                    </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
 
-                <!-- Tube Inspection -->
-                <div id="tube" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('tube')">
-                    <div class="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="thermometer" class="w-7 h-7 text-green-400"></i>
+                    <!-- Advanced NDT -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-sit-accent/30 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-sit-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="scan-line" class="w-6 h-6 text-sit-accent"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Advanced NDT</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">PAUT, TOFD, Guided Wave UT, ACFM, PEC/PECT, ECA, and automated scanners for complex challenges.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">PAUT</span>
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">TOFD</span>
+                            <span class="px-2 py-1 bg-sit-accent/20 rounded text-xs text-sit-accent">LRUT</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.tube.title">Tube Inspection</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.tube.desc">
-                        ECT, RFT, NFT, MFL, and IRIS inspection for heat exchangers and air coolers with detailed tube sheet mapping.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">ECT</span>
-                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">RFT</span>
-                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">IRIS</span>
-                        <span class="px-3 py-1 bg-green-500/10 rounded-full text-xs text-green-400">NFT</span>
-                    </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
 
-                <!-- Drone Inspection -->
-                <div id="drone" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('drone')">
-                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="plane" class="w-7 h-7 text-purple-400"></i>
+                    <!-- Tube Inspection -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="thermometer" class="w-6 h-6 text-green-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Tube Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">ECT, RFT, NFT, MFL, and IRIS inspection for heat exchangers and air coolers with detailed mapping.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">ECT</span>
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">RFT</span>
+                            <span class="px-2 py-1 bg-green-500/20 rounded text-xs text-green-400">IRIS</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.drone.title">Drone Inspection</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.drone.desc">
-                        Aerial surveys for stacks, flares, tanks, and structures with optional IR thermography and photogrammetry.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">Aerial</span>
-                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">Thermal</span>
-                        <span class="px-3 py-1 bg-purple-500/10 rounded-full text-xs text-purple-400">3D Model</span>
-                    </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
 
-                <!-- Robotic Inspection -->
-                <div id="robotics" class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('robotics')">
-                    <div class="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="bot" class="w-7 h-7 text-red-400"></i>
+                    <!-- Drone Inspection -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="plane" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Drone Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Aerial surveys for stacks, flares, tanks, and structures with optional IR thermography.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/20 rounded text-xs text-purple-400">Aerial</span>
+                            <span class="px-2 py-1 bg-purple-500/20 rounded text-xs text-purple-400">Thermal</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.robotics.title">Robotic Inspection</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.robotics.desc">
-                        Confined space and difficult-access solutions for tanks, vessels, and ducts with visual and NDT payloads.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">Crawler</span>
-                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">UT Payload</span>
-                        <span class="px-3 py-1 bg-red-500/10 rounded-full text-xs text-red-400">Confined</span>
-                    </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
 
-                <!-- Shutdown Support -->
-                <div class="service-card glass-card rounded-2xl p-8 reveal group cursor-pointer" onclick="openServiceModal('shutdown')">
-                    <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="timer" class="w-7 h-7 text-orange-400"></i>
+                    <!-- Robotic Inspection -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="bot" class="w-6 h-6 text-red-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Robotic Inspection</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Confined space solutions for tanks, vessels, and ducts with visual and NDT payloads.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-red-500/20 rounded text-xs text-red-400">Crawler</span>
+                            <span class="px-2 py-1 bg-red-500/20 rounded text-xs text-red-400">UT</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-2xl font-bold mb-3" data-i18n="services.shutdown.title">Turnaround Support</h3>
-                    <p class="text-gray-400 mb-6" data-i18n="services.shutdown.desc">
-                        Rapid mobilization for shutdown inspections, expedited reporting, re-inspections, and punch-list closeout support.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">Rapid</span>
-                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">24/7</span>
-                        <span class="px-3 py-1 bg-orange-500/10 rounded-full text-xs text-orange-400">TAR</span>
+
+                    <!-- Turnaround Support -->
+                    <div class="group glass-card rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-sit-accent/20 cursor-pointer border border-white/10 backdrop-blur-md bg-black/20">
+                        <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="timer" class="w-6 h-6 text-orange-400"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2 text-white">Turnaround Support</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">Rapid mobilization for shutdown inspections, expedited reporting, and punch-list closeout.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-orange-500/20 rounded text-xs text-orange-400">24/7</span>
+                            <span class="px-2 py-1 bg-orange-500/20 rounded text-xs text-orange-400">Rapid</span>
+                        </div>
                     </div>
-                    <div class="flex items-center text-sit-accent font-semibold group-hover:gap-2 transition-all">
-                        <span data-i18n="services.learnmore">Learn More</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Bottom 1/4 - Service Details -->
+    <div class="h-[25%] min-h-[300px] bg-sit-primary border-t border-white/10 flex items-center relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Safety First</h4>
+                    <p class="text-gray-400 text-sm">All services executed with strict HSE protocols and certified personnel.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Rapid Response</h4>
+                    <p class="text-gray-400 text-sm">24/7 availability for emergency inspections and turnaround support.</p>
+                </div>
+                <div class="p-6">
+                    <div class="w-16 h-16 rounded-full bg-sit-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="file-check" class="w-8 h-8 text-sit-accent"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-white mb-2">Certified Reports</h4>
+                    <p class="text-gray-400 text-sm">Detailed documentation with full traceability and digital archives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
     <!-- Industries Section -->
     <section id="industries" class="relative py-24 bg-sit-secondary overflow-hidden">
@@ -911,272 +946,382 @@
         </div>
     </section>
 
-    <!-- Projects/Case Studies Section -->
-    <section id="projects" class="relative py-24 bg-sit-primary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
-                        <i data-lucide="briefcase" class="w-5 h-5"></i>
-                        <span class="tracking-widest uppercase text-sm" data-i18n="projects.label">Case Studies</span>
-                    </div>
-                    <h2 class="font-display text-4xl sm:text-5xl font-bold" data-i18n="projects.title">
-                        Proven <span class="text-gradient">Results</span>
-                    </h2>
-                </div>
-                <a href="#contact" class="mt-6 md:mt-0 magnetic-btn border-2 border-sit-accent text-sit-accent hover:bg-sit-accent hover:text-sit-primary px-6 py-3 rounded-lg font-semibold transition-all">
-                    <span data-i18n="projects.viewall">View All Projects</span>
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop" alt="Refinery Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">PAUT</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p1.title">Refinery Turnaround</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p1.desc">
-                            Complete weld inspection of 450+ joints using PAUT/TOFD during 14-day shutdown, zero delays.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2024</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Pipeline Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">LRUT</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p2.title">Pipeline Screening</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p2.desc">
-                            12km non-piggable pipeline screened using Guided Wave UT, identified 23 critical locations for excavation.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2024</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Tank Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">MFL</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p3.title">Tank Floor Scan</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p3.desc">
-                            MFL scanning of 6 crude oil storage tanks (40m diameter), detected floor corrosion without cleaning.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2023</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1565514020176-dbf2277e4957?w=600&h=400&fit=crop" alt="Heat Exchanger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ECT</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p4.title">Heat Exchanger Bundle</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p4.desc">
-                            Tube inspection of 4 large heat exchangers using ECT and IRIS, prioritized 15% tubes for plugging.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2023</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Drone Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">DRONE</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p5.title">Flare Stack Survey</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p5.desc">
-                            Drone inspection of 85m flare stack and structure, eliminated scaffolding requirements, 70% cost savings.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2023</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="Robotic Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ROBOT</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-display text-xl font-bold mb-2" data-i18n="projects.p6.title">Confined Space Entry</h3>
-                        <p class="text-gray-400 text-sm mb-4" data-i18n="projects.p6.desc">
-                            Robotic inspection of 4 storage tanks without human entry, UT thickness measurements and visual documentation.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                            <span class="text-sm text-gray-500">2024</span>
-                            <span class="text-sit-accent text-sm font-semibold flex items-center gap-1">
-                                <span data-i18n="projects.readmore">Read More</span>
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipment & Certifications -->
-    <section class="relative py-24 bg-sit-secondary overflow-hidden">
-        <div class="absolute inset-0 industrial-pattern opacity-20"></div>
+<!-- Projects/Case Studies Section -->
+<section id="projects" class="relative min-h-screen py-24 overflow-hidden">
+    
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="assets/results-section.png" 
+             alt="Results background" 
+             class="w-full h-full object-cover object-center"
+             onerror="this.style.display='none'; document.getElementById('results-fallback').style.display='block';">
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Equipment -->
-                <div class="reveal">
-                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
-                        <i data-lucide="wrench" class="w-5 h-5"></i>
-                        <span class="tracking-widest uppercase text-sm" data-i18n="equipment.label">Our Equipment</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-8" data-i18n="equipment.title">
-                        State-of-the-Art <span class="text-sit-accent">Technology</span>
-                    </h2>
+        <!-- Fallback -->
+        <div id="results-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-sit-primary via-sit-secondary to-slate-900">
+            <div class="absolute inset-0 opacity-20" 
+                 style="background-image: 
+                    linear-gradient(rgba(138,155,168,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(138,155,168,0.1) 1px, transparent 1px);
+                    background-size: 50px 50px;">
+            </div>
+        </div>
+        
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-sit-primary/85"></div>
+    </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="scan" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">PAUT Systems</h4>
-                            <p class="text-xs text-gray-400">Phased Array Ultrasonic Testing</p>
-                        </div>
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="waves" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">TOFD Equipment</h4>
-                            <p class="text-xs text-gray-400">Time of Flight Diffraction</p>
-                        </div>
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="radio" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">LRUT</h4>
-                            <p class="text-xs text-gray-400">Guided Wave Testing</p>
-                        </div>
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="magnet" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">ACFM</h4>
-                            <p class="text-xs text-gray-400">Alternating Current Field</p>
-                        </div>
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="zap" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">PEC</h4>
-                            <p class="text-xs text-gray-400">Pulsed Eddy Current</p>
-                        </div>
-                        <div class="equipment-card rounded-xl p-6 hover:border-sit-accent/50 transition-colors">
-                            <i data-lucide="plane" class="w-8 h-8 text-sit-accent mb-3"></i>
-                            <h4 class="font-semibold mb-1">Drone Fleet</h4>
-                            <p class="text-xs text-gray-400">Industrial UAVs with payloads</p>
-                        </div>
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
+                    <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    <span class="tracking-widest uppercase text-sm" data-i18n="projects.label">Case Studies</span>
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold text-white" data-i18n="projects.title">
+                    Proven <span class="text-gradient">Results</span>
+                </h2>
+            </div>
+            <a href="#contact" class="mt-6 md:mt-0 magnetic-btn border-2 border-sit-accent text-sit-accent hover:bg-sit-accent hover:text-sit-primary px-6 py-3 rounded-lg font-semibold transition-all">
+                <span data-i18n="projects.viewall">View All Projects</span>
+            </a>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop" alt="Refinery Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">PAUT</span>
                     </div>
                 </div>
-
-                <!-- Certifications -->
-                <div class="reveal">
-                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4">
-                        <i data-lucide="award" class="w-5 h-5"></i>
-                        <span class="tracking-widest uppercase text-sm" data-i18n="cert.label">Certifications</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-8" data-i18n="cert.title">
-                        Quality & <span class="text-sit-accent">Compliance</span>
-                    </h2>
-
-                    <div class="space-y-4">
-                        <div class="glass rounded-xl p-6 flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="shield" class="w-6 h-6 text-sit-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">ISO 9712</h4>
-                                <p class="text-sm text-gray-400" data-i18n="cert.iso9712">Personnel certification in NDT methods. Level II and III certified inspectors.</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-xl p-6 flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-sit-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">ASNT</h4>
-                                <p class="text-sm text-gray-400" data-i18n="cert.asnt">American Society for Nondestructive Testing compliance and procedures.</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-xl p-6 flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="file-badge" class="w-6 h-6 text-sit-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">ISO 9001:2015</h4>
-                                <p class="text-sm text-gray-400" data-i18n="cert.iso9001">Quality Management System certification for consistent service delivery.</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-xl p-6 flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-sit-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="heart-pulse" class="w-6 h-6 text-sit-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">ISO 45001:2018</h4>
-                                <p class="text-sm text-gray-400" data-i18n="cert.iso45001">Occupational Health and Safety Management System certification.</p>
-                            </div>
-                        </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p1.title">Refinery Turnaround</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p1.desc">
+                        Complete weld inspection of 450+ joints using PAUT/TOFD during 14-day shutdown, zero delays.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <!-- Project 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Pipeline Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">LRUT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p2.title">Pipeline Screening</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p2.desc">
+                        12km non-piggable pipeline screened using Guided Wave UT, identified 23 critical locations for excavation.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Tank Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">MFL</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p3.title">Tank Floor Scan</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p3.desc">
+                        MFL scanning of 6 crude oil storage tanks (40m diameter), detected floor corrosion without cleaning.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1565514020176-dbf2277e4957?w=600&h=400&fit=crop" alt="Heat Exchanger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ECT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p4.title">Heat Exchanger Bundle</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p4.desc">
+                        Tube inspection of 4 large heat exchangers using ECT and IRIS, prioritized 15% tubes for plugging.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Drone Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">DRONE</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p5.title">Flare Stack Survey</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p5.desc">
+                        Drone inspection of 85m flare stack and structure, eliminated scaffolding requirements, 70% cost savings.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2023</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="glass-card rounded-2xl overflow-hidden reveal group bg-black/30 backdrop-blur-md border border-white/10 hover:border-sit-accent/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="Robotic Inspection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-sit-accent text-sit-primary text-xs font-bold rounded-full">ROBOT</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-xl font-bold mb-2 text-white" data-i18n="projects.p6.title">Confined Space Entry</h3>
+                    <p class="text-gray-300 text-sm mb-4" data-i18n="projects.p6.desc">
+                        Robotic inspection of 4 storage tanks without human entry, UT thickness measurements and visual documentation.
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span class="text-sm text-gray-400">2024</span>
+                        <span class="text-sit-accent text-sm font-semibold flex items-center gap-1 cursor-pointer hover:gap-2 transition-all">
+                            <span data-i18n="projects.readmore">Read More</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Simple Gradient Separator -->
+<div class="h-20 bg-gradient-to-b from-sit-secondary to-sit-primary"></div>
+
+<!-- Equipment & Certifications Section -->
+<section class="relative min-h-screen flex flex-col">
+    
+    <!-- Top 3/4 - Background with Content Overlay -->
+    <div class="relative h-[75%] min-h-[600px] w-full overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="assets/equipment-background.png" 
+                 alt="Equipment and certifications" 
+                 class="w-full h-full object-cover object-center"
+                 onerror="this.style.display='none'; document.getElementById('equipment-fallback').style.display='block';">
+            
+            <!-- Fallback -->
+            <div id="equipment-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-slate-900 via-sit-secondary to-slate-900">
+                <div class="absolute inset-0 opacity-20" 
+                     style="background-image: 
+                        linear-gradient(rgba(138,155,168,0.1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(138,155,168,0.1) 1px, transparent 1px);
+                        background-size: 50px 50px;">
+                </div>
+                <div class="absolute top-1/3 left-20 w-72 h-72 bg-sit-accent/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/3 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+            </div>
+            
+            <!-- Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-sit-primary"></div>
+            
+            <!-- Industrial Grid Pattern -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" 
+                 style="background-image: 
+                    linear-gradient(rgba(138,155,168,0.2) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(138,155,168,0.2) 1px, transparent 1px);
+                    background-size: 60px 60px;">
+            </div>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-7xl mx-auto w-full">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-4 tracking-widest uppercase text-sm">
+                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                        <span>Capabilities</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                        Equipment & <span class="text-sit-accent">Certifications</span>
+                    </h2>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="grid lg:grid-cols-2 gap-12">
+                    
+                    <!-- Equipment Column -->
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-6">
+                            <i data-lucide="wrench" class="w-5 h-5"></i>
+                            <span class="tracking-widest uppercase text-sm">Our Equipment</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold mb-8 text-white">
+                            State-of-the-Art <span class="text-sit-accent">Technology</span>
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="scan" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">PAUT Systems</h4>
+                                <p class="text-xs text-gray-400">Phased Array Ultrasonic Testing</p>
+                            </div>
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="waves" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">TOFD Equipment</h4>
+                                <p class="text-xs text-gray-400">Time of Flight Diffraction</p>
+                            </div>
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="radio" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">LRUT</h4>
+                                <p class="text-xs text-gray-400">Guided Wave Testing</p>
+                            </div>
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="magnet" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">ACFM</h4>
+                                <p class="text-xs text-gray-400">Alternating Current Field</p>
+                            </div>
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="zap" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">PEC</h4>
+                                <p class="text-xs text-gray-400">Pulsed Eddy Current</p>
+                            </div>
+                            <div class="group glass-card rounded-xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-white/10 backdrop-blur-md bg-black/30">
+                                <i data-lucide="plane" class="w-8 h-8 text-sit-accent mb-3 group-hover:scale-110 transition-transform"></i>
+                                <h4 class="font-semibold mb-1 text-white">Drone Fleet</h4>
+                                <p class="text-xs text-gray-400">Industrial UAVs with payloads</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications Column -->
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-sit-accent font-semibold mb-6">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                            <span class="tracking-widest uppercase text-sm">Certifications</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold mb-8 text-white">
+                            Quality & <span class="text-sit-accent">Compliance</span>
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="group glass-card rounded-xl p-6 flex items-start gap-4 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-md bg-black/30">
+                                <div class="w-12 h-12 rounded-lg bg-sit-accent/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="shield" class="w-6 h-6 text-sit-accent"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1 text-white">ISO 9712</h4>
+                                    <p class="text-sm text-gray-400">Personnel certification in NDT methods. Level II and III certified inspectors.</p>
+                                </div>
+                            </div>
+
+                            <div class="group glass-card rounded-xl p-6 flex items-start gap-4 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-md bg-black/30">
+                                <div class="w-12 h-12 rounded-lg bg-sit-accent/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-sit-accent"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1 text-white">ASNT</h4>
+                                    <p class="text-sm text-gray-400">American Society for Nondestructive Testing compliance and procedures.</p>
+                                </div>
+                            </div>
+
+                            <div class="group glass-card rounded-xl p-6 flex items-start gap-4 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-md bg-black/30">
+                                <div class="w-12 h-12 rounded-lg bg-sit-accent/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="file-badge" class="w-6 h-6 text-sit-accent"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1 text-white">ISO 9001:2015</h4>
+                                    <p class="text-sm text-gray-400">Quality Management System certification for consistent service delivery.</p>
+                                </div>
+                            </div>
+
+                            <div class="group glass-card rounded-xl p-6 flex items-start gap-4 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-md bg-black/30">
+                                <div class="w-12 h-12 rounded-lg bg-sit-accent/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="heart-pulse" class="w-6 h-6 text-sit-accent"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1 text-white">ISO 45001:2018</h4>
+                                    <p class="text-sm text-gray-400">Occupational Health and Safety Management System certification.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom 1/4 - Trust Indicators -->
+    <div class="h-[25%] min-h-[250px] bg-sit-primary border-t border-white/10 flex items-center relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="font-display text-3xl font-bold text-sit-accent mb-2">ISO 9712</div>
+                    <div class="text-sm text-gray-400">Certified Personnel</div>
+                </div>
+                <div class="p-4">
+                    <div class="font-display text-3xl font-bold text-sit-accent mb-2">ASNT</div>
+                    <div class="text-sm text-gray-400">Compliant Procedures</div>
+                </div>
+                <div class="p-4">
+                    <div class="font-display text-3xl font-bold text-sit-accent mb-2">ISO 9001</div>
+                    <div class="text-sm text-gray-400">Quality Management</div>
+                </div>
+                <div class="p-4">
+                    <div class="font-display text-3xl font-bold text-sit-accent mb-2">ISO 45001</div>
+                    <div class="text-sm text-gray-400">Safety Certified</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
     <!-- Contact Section -->
     <section id="contact" class="relative py-24 bg-sit-primary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -2044,7 +2189,7 @@
             }
 
             draw() {
-                ctx.fillStyle = 'rgba(245, 158, 11, 0.5)';
+                ctx.fillStyle = 'rgba(138, 155, 168, 0.5)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -2074,7 +2219,7 @@
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < 150) {
-                        ctx.strokeStyle = `rgba(245, 158, 11, ${0.2 * (1 - dist / 150)})`;
+                        ctx.strokeStyle = `rgba(138, 155, 168, ${0.2 * (1 - dist / 150)})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
